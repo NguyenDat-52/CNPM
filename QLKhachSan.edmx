@@ -1,0 +1,861 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QLKSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ALBUM_ANH_PHONG">
+          <Key>
+            <PropertyRef Name="MA_ANH" />
+          </Key>
+          <Property Name="MA_ANH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MA_PHONG" Type="int" />
+          <Property Name="LINK_ANH" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="DANH_GIA">
+          <Key>
+            <PropertyRef Name="MA_DG" />
+          </Key>
+          <Property Name="MA_DG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MA_KH" Type="int" />
+          <Property Name="MA_PHONG" Type="int" />
+          <Property Name="NOI_DUNG" Type="nvarchar" MaxLength="255" />
+          <Property Name="SO_SAO" Type="int" />
+          <Property Name="NGAY_DANHGIA" Type="date" />
+        </EntityType>
+        <EntityType Name="DAT_PHONG">
+          <Key>
+            <PropertyRef Name="MA_DP" />
+          </Key>
+          <Property Name="MA_DP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MA_KH" Type="int" />
+          <Property Name="MA_PHONG" Type="int" />
+          <Property Name="NGAY_DAT" Type="date" />
+          <Property Name="NGAY_NHAN" Type="date" />
+          <Property Name="NGAY_TRA" Type="date" />
+          <Property Name="TIEN_COC" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TRANG_THAI" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="DICH_VU">
+          <Key>
+            <PropertyRef Name="MA_DV" />
+          </Key>
+          <Property Name="MA_DV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TEN_DV" Type="nvarchar" MaxLength="100" />
+          <Property Name="GIA_DV" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="HOA_DON">
+          <Key>
+            <PropertyRef Name="MA_HD" />
+          </Key>
+          <Property Name="MA_HD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MA_DP" Type="int" />
+          <Property Name="TONG_TIEN" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY_XUAT" Type="date" />
+          <Property Name="DA_THANH_TOAN" Type="bit" />
+        </EntityType>
+        <EntityType Name="HOA_DON_TAM">
+          <Key>
+            <PropertyRef Name="MA_HDT" />
+          </Key>
+          <Property Name="MA_HDT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MA_DP" Type="int" />
+          <Property Name="TIEN_COC" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY_XUAT" Type="date" />
+        </EntityType>
+        <EntityType Name="KHACH_HANG">
+          <Key>
+            <PropertyRef Name="MA_KH" />
+          </Key>
+          <Property Name="MA_KH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HO_TEN" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SDT" Type="varchar" MaxLength="15" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="100" />
+          <Property Name="CCCD" Type="varchar" MaxLength="20" />
+          <Property Name="MA_TK" Type="int" />
+        </EntityType>
+        <EntityType Name="LOAI_PHONG">
+          <Key>
+            <PropertyRef Name="MA_LOAI" />
+          </Key>
+          <Property Name="MA_LOAI" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TEN_LOAI" Type="nvarchar" MaxLength="50" />
+          <Property Name="MO_TA" Type="nvarchar" MaxLength="255" />
+          <Property Name="GIA_MOT_DEM" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="NHAN_VIEN">
+          <Key>
+            <PropertyRef Name="MA_NV" />
+          </Key>
+          <Property Name="MA_NV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HO_TEN" Type="nvarchar" MaxLength="100" />
+          <Property Name="CHUC_VU" Type="nvarchar" MaxLength="50" />
+          <Property Name="SDT" Type="varchar" MaxLength="15" />
+          <Property Name="MA_TK" Type="int" />
+        </EntityType>
+        <EntityType Name="PHONG">
+          <Key>
+            <PropertyRef Name="MA_PHONG" />
+          </Key>
+          <Property Name="MA_PHONG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TEN_PHONG" Type="nvarchar" MaxLength="50" />
+          <Property Name="TANG" Type="int" />
+          <Property Name="TRANG_THAI" Type="nvarchar" MaxLength="20" />
+          <Property Name="MA_LOAI" Type="int" />
+        </EntityType>
+        <EntityType Name="SU_DUNG_DV">
+          <Key>
+            <PropertyRef Name="MA_SD" />
+          </Key>
+          <Property Name="MA_SD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MA_DP" Type="int" />
+          <Property Name="MA_DV" Type="int" />
+          <Property Name="SO_LUONG" Type="int" />
+          <Property Name="NGAY_SU_DUNG" Type="date" />
+        </EntityType>
+        <EntityType Name="TAI_KHOAN">
+          <Key>
+            <PropertyRef Name="MA_TK" />
+          </Key>
+          <Property Name="MA_TK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TEN_DANG_NHAP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MAT_KHAU" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="VAI_TRO" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__ALBUM_ANH__MA_PH__59FA5E80">
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="0..1" />
+          <End Role="ALBUM_ANH_PHONG" Type="Self.ALBUM_ANH_PHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONG">
+              <PropertyRef Name="MA_PHONG" />
+            </Principal>
+            <Dependent Role="ALBUM_ANH_PHONG">
+              <PropertyRef Name="MA_PHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DANH_GIA__MA_KH__5629CD9C">
+          <End Role="KHACH_HANG" Type="Self.KHACH_HANG" Multiplicity="0..1" />
+          <End Role="DANH_GIA" Type="Self.DANH_GIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACH_HANG">
+              <PropertyRef Name="MA_KH" />
+            </Principal>
+            <Dependent Role="DANH_GIA">
+              <PropertyRef Name="MA_KH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DANH_GIA__MA_PHO__571DF1D5">
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="0..1" />
+          <End Role="DANH_GIA" Type="Self.DANH_GIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONG">
+              <PropertyRef Name="MA_PHONG" />
+            </Principal>
+            <Dependent Role="DANH_GIA">
+              <PropertyRef Name="MA_PHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DAT_PHONG__MA_KH__48CFD27E">
+          <End Role="KHACH_HANG" Type="Self.KHACH_HANG" Multiplicity="0..1" />
+          <End Role="DAT_PHONG" Type="Self.DAT_PHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACH_HANG">
+              <PropertyRef Name="MA_KH" />
+            </Principal>
+            <Dependent Role="DAT_PHONG">
+              <PropertyRef Name="MA_KH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DAT_PHONG__MA_PH__49C3F6B7">
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="0..1" />
+          <End Role="DAT_PHONG" Type="Self.DAT_PHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONG">
+              <PropertyRef Name="MA_PHONG" />
+            </Principal>
+            <Dependent Role="DAT_PHONG">
+              <PropertyRef Name="MA_PHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOA_DON__MA_DP__5070F446">
+          <End Role="DAT_PHONG" Type="Self.DAT_PHONG" Multiplicity="0..1" />
+          <End Role="HOA_DON" Type="Self.HOA_DON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_PHONG">
+              <PropertyRef Name="MA_DP" />
+            </Principal>
+            <Dependent Role="HOA_DON">
+              <PropertyRef Name="MA_DP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOA_DON_T__MA_DP__534D60F1">
+          <End Role="DAT_PHONG" Type="Self.DAT_PHONG" Multiplicity="0..1" />
+          <End Role="HOA_DON_TAM" Type="Self.HOA_DON_TAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_PHONG">
+              <PropertyRef Name="MA_DP" />
+            </Principal>
+            <Dependent Role="HOA_DON_TAM">
+              <PropertyRef Name="MA_DP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__KHACH_HAN__MA_TK__3B75D760">
+          <End Role="TAI_KHOAN" Type="Self.TAI_KHOAN" Multiplicity="0..1" />
+          <End Role="KHACH_HANG" Type="Self.KHACH_HANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAI_KHOAN">
+              <PropertyRef Name="MA_TK" />
+            </Principal>
+            <Dependent Role="KHACH_HANG">
+              <PropertyRef Name="MA_TK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NHAN_VIEN__MA_TK__3F466844">
+          <End Role="TAI_KHOAN" Type="Self.TAI_KHOAN" Multiplicity="0..1" />
+          <End Role="NHAN_VIEN" Type="Self.NHAN_VIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAI_KHOAN">
+              <PropertyRef Name="MA_TK" />
+            </Principal>
+            <Dependent Role="NHAN_VIEN">
+              <PropertyRef Name="MA_TK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PHONG__MA_LOAI__440B1D61">
+          <End Role="LOAI_PHONG" Type="Self.LOAI_PHONG" Multiplicity="0..1" />
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAI_PHONG">
+              <PropertyRef Name="MA_LOAI" />
+            </Principal>
+            <Dependent Role="PHONG">
+              <PropertyRef Name="MA_LOAI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SU_DUNG_D__MA_DP__4CA06362">
+          <End Role="DAT_PHONG" Type="Self.DAT_PHONG" Multiplicity="0..1" />
+          <End Role="SU_DUNG_DV" Type="Self.SU_DUNG_DV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_PHONG">
+              <PropertyRef Name="MA_DP" />
+            </Principal>
+            <Dependent Role="SU_DUNG_DV">
+              <PropertyRef Name="MA_DP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SU_DUNG_D__MA_DV__4D94879B">
+          <End Role="DICH_VU" Type="Self.DICH_VU" Multiplicity="0..1" />
+          <End Role="SU_DUNG_DV" Type="Self.SU_DUNG_DV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DICH_VU">
+              <PropertyRef Name="MA_DV" />
+            </Principal>
+            <Dependent Role="SU_DUNG_DV">
+              <PropertyRef Name="MA_DV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="SP_SU_DUNG_DICH_VU" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MA_DP" Type="int" Mode="In" />
+          <Parameter Name="MA_DV" Type="int" Mode="In" />
+          <Parameter Name="SO_LUONG" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_TINH_HOA_DON" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MA_DP" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="QLKSModelStoreContainer">
+          <EntitySet Name="ALBUM_ANH_PHONG" EntityType="Self.ALBUM_ANH_PHONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DANH_GIA" EntityType="Self.DANH_GIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DAT_PHONG" EntityType="Self.DAT_PHONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DICH_VU" EntityType="Self.DICH_VU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HOA_DON" EntityType="Self.HOA_DON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HOA_DON_TAM" EntityType="Self.HOA_DON_TAM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KHACH_HANG" EntityType="Self.KHACH_HANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOAI_PHONG" EntityType="Self.LOAI_PHONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHAN_VIEN" EntityType="Self.NHAN_VIEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PHONG" EntityType="Self.PHONG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SU_DUNG_DV" EntityType="Self.SU_DUNG_DV" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TAI_KHOAN" EntityType="Self.TAI_KHOAN" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__ALBUM_ANH__MA_PH__59FA5E80" Association="Self.FK__ALBUM_ANH__MA_PH__59FA5E80">
+            <End Role="PHONG" EntitySet="PHONG" />
+            <End Role="ALBUM_ANH_PHONG" EntitySet="ALBUM_ANH_PHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DANH_GIA__MA_KH__5629CD9C" Association="Self.FK__DANH_GIA__MA_KH__5629CD9C">
+            <End Role="KHACH_HANG" EntitySet="KHACH_HANG" />
+            <End Role="DANH_GIA" EntitySet="DANH_GIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DANH_GIA__MA_PHO__571DF1D5" Association="Self.FK__DANH_GIA__MA_PHO__571DF1D5">
+            <End Role="PHONG" EntitySet="PHONG" />
+            <End Role="DANH_GIA" EntitySet="DANH_GIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DAT_PHONG__MA_KH__48CFD27E" Association="Self.FK__DAT_PHONG__MA_KH__48CFD27E">
+            <End Role="KHACH_HANG" EntitySet="KHACH_HANG" />
+            <End Role="DAT_PHONG" EntitySet="DAT_PHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DAT_PHONG__MA_PH__49C3F6B7" Association="Self.FK__DAT_PHONG__MA_PH__49C3F6B7">
+            <End Role="PHONG" EntitySet="PHONG" />
+            <End Role="DAT_PHONG" EntitySet="DAT_PHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOA_DON__MA_DP__5070F446" Association="Self.FK__HOA_DON__MA_DP__5070F446">
+            <End Role="DAT_PHONG" EntitySet="DAT_PHONG" />
+            <End Role="HOA_DON" EntitySet="HOA_DON" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOA_DON_T__MA_DP__534D60F1" Association="Self.FK__HOA_DON_T__MA_DP__534D60F1">
+            <End Role="DAT_PHONG" EntitySet="DAT_PHONG" />
+            <End Role="HOA_DON_TAM" EntitySet="HOA_DON_TAM" />
+          </AssociationSet>
+          <AssociationSet Name="FK__KHACH_HAN__MA_TK__3B75D760" Association="Self.FK__KHACH_HAN__MA_TK__3B75D760">
+            <End Role="TAI_KHOAN" EntitySet="TAI_KHOAN" />
+            <End Role="KHACH_HANG" EntitySet="KHACH_HANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NHAN_VIEN__MA_TK__3F466844" Association="Self.FK__NHAN_VIEN__MA_TK__3F466844">
+            <End Role="TAI_KHOAN" EntitySet="TAI_KHOAN" />
+            <End Role="NHAN_VIEN" EntitySet="NHAN_VIEN" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PHONG__MA_LOAI__440B1D61" Association="Self.FK__PHONG__MA_LOAI__440B1D61">
+            <End Role="LOAI_PHONG" EntitySet="LOAI_PHONG" />
+            <End Role="PHONG" EntitySet="PHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SU_DUNG_D__MA_DP__4CA06362" Association="Self.FK__SU_DUNG_D__MA_DP__4CA06362">
+            <End Role="DAT_PHONG" EntitySet="DAT_PHONG" />
+            <End Role="SU_DUNG_DV" EntitySet="SU_DUNG_DV" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SU_DUNG_D__MA_DV__4D94879B" Association="Self.FK__SU_DUNG_D__MA_DV__4D94879B">
+            <End Role="DICH_VU" EntitySet="DICH_VU" />
+            <End Role="SU_DUNG_DV" EntitySet="SU_DUNG_DV" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLKSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ALBUM_ANH_PHONG">
+          <Key>
+            <PropertyRef Name="MA_ANH" />
+          </Key>
+          <Property Name="MA_ANH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MA_PHONG" Type="Int32" />
+          <Property Name="LINK_ANH" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PHONG" Relationship="Self.FK__ALBUM_ANH__MA_PH__59FA5E80" FromRole="ALBUM_ANH_PHONG" ToRole="PHONG" />
+        </EntityType>
+        <EntityType Name="DANH_GIA">
+          <Key>
+            <PropertyRef Name="MA_DG" />
+          </Key>
+          <Property Name="MA_DG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MA_KH" Type="Int32" />
+          <Property Name="MA_PHONG" Type="Int32" />
+          <Property Name="NOI_DUNG" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SO_SAO" Type="Int32" />
+          <Property Name="NGAY_DANHGIA" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="KHACH_HANG" Relationship="Self.FK__DANH_GIA__MA_KH__5629CD9C" FromRole="DANH_GIA" ToRole="KHACH_HANG" />
+          <NavigationProperty Name="PHONG" Relationship="Self.FK__DANH_GIA__MA_PHO__571DF1D5" FromRole="DANH_GIA" ToRole="PHONG" />
+        </EntityType>
+        <EntityType Name="DAT_PHONG">
+          <Key>
+            <PropertyRef Name="MA_DP" />
+          </Key>
+          <Property Name="MA_DP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MA_KH" Type="Int32" />
+          <Property Name="MA_PHONG" Type="Int32" />
+          <Property Name="NGAY_DAT" Type="DateTime" Precision="0" />
+          <Property Name="NGAY_NHAN" Type="DateTime" Precision="0" />
+          <Property Name="NGAY_TRA" Type="DateTime" Precision="0" />
+          <Property Name="TIEN_COC" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TRANG_THAI" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="KHACH_HANG" Relationship="Self.FK__DAT_PHONG__MA_KH__48CFD27E" FromRole="DAT_PHONG" ToRole="KHACH_HANG" />
+          <NavigationProperty Name="PHONG" Relationship="Self.FK__DAT_PHONG__MA_PH__49C3F6B7" FromRole="DAT_PHONG" ToRole="PHONG" />
+          <NavigationProperty Name="HOA_DON" Relationship="Self.FK__HOA_DON__MA_DP__5070F446" FromRole="DAT_PHONG" ToRole="HOA_DON" />
+          <NavigationProperty Name="HOA_DON_TAM" Relationship="Self.FK__HOA_DON_T__MA_DP__534D60F1" FromRole="DAT_PHONG" ToRole="HOA_DON_TAM" />
+          <NavigationProperty Name="SU_DUNG_DV" Relationship="Self.FK__SU_DUNG_D__MA_DP__4CA06362" FromRole="DAT_PHONG" ToRole="SU_DUNG_DV" />
+        </EntityType>
+        <EntityType Name="DICH_VU">
+          <Key>
+            <PropertyRef Name="MA_DV" />
+          </Key>
+          <Property Name="MA_DV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TEN_DV" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GIA_DV" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="SU_DUNG_DV" Relationship="Self.FK__SU_DUNG_D__MA_DV__4D94879B" FromRole="DICH_VU" ToRole="SU_DUNG_DV" />
+        </EntityType>
+        <EntityType Name="HOA_DON">
+          <Key>
+            <PropertyRef Name="MA_HD" />
+          </Key>
+          <Property Name="MA_HD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MA_DP" Type="Int32" />
+          <Property Name="TONG_TIEN" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY_XUAT" Type="DateTime" Precision="0" />
+          <Property Name="DA_THANH_TOAN" Type="Boolean" />
+          <NavigationProperty Name="DAT_PHONG" Relationship="Self.FK__HOA_DON__MA_DP__5070F446" FromRole="HOA_DON" ToRole="DAT_PHONG" />
+        </EntityType>
+        <EntityType Name="HOA_DON_TAM">
+          <Key>
+            <PropertyRef Name="MA_HDT" />
+          </Key>
+          <Property Name="MA_HDT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MA_DP" Type="Int32" />
+          <Property Name="TIEN_COC" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NGAY_XUAT" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="DAT_PHONG" Relationship="Self.FK__HOA_DON_T__MA_DP__534D60F1" FromRole="HOA_DON_TAM" ToRole="DAT_PHONG" />
+        </EntityType>
+        <EntityType Name="KHACH_HANG">
+          <Key>
+            <PropertyRef Name="MA_KH" />
+          </Key>
+          <Property Name="MA_KH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HO_TEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SDT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CCCD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MA_TK" Type="Int32" />
+          <NavigationProperty Name="DANH_GIA" Relationship="Self.FK__DANH_GIA__MA_KH__5629CD9C" FromRole="KHACH_HANG" ToRole="DANH_GIA" />
+          <NavigationProperty Name="DAT_PHONG" Relationship="Self.FK__DAT_PHONG__MA_KH__48CFD27E" FromRole="KHACH_HANG" ToRole="DAT_PHONG" />
+          <NavigationProperty Name="TAI_KHOAN" Relationship="Self.FK__KHACH_HAN__MA_TK__3B75D760" FromRole="KHACH_HANG" ToRole="TAI_KHOAN" />
+        </EntityType>
+        <EntityType Name="LOAI_PHONG">
+          <Key>
+            <PropertyRef Name="MA_LOAI" />
+          </Key>
+          <Property Name="MA_LOAI" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TEN_LOAI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MO_TA" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GIA_MOT_DEM" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="PHONGs" Relationship="Self.FK__PHONG__MA_LOAI__440B1D61" FromRole="LOAI_PHONG" ToRole="PHONG" />
+        </EntityType>
+        <EntityType Name="NHAN_VIEN">
+          <Key>
+            <PropertyRef Name="MA_NV" />
+          </Key>
+          <Property Name="MA_NV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HO_TEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CHUC_VU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="MA_TK" Type="Int32" />
+          <NavigationProperty Name="TAI_KHOAN" Relationship="Self.FK__NHAN_VIEN__MA_TK__3F466844" FromRole="NHAN_VIEN" ToRole="TAI_KHOAN" />
+        </EntityType>
+        <EntityType Name="PHONG">
+          <Key>
+            <PropertyRef Name="MA_PHONG" />
+          </Key>
+          <Property Name="MA_PHONG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TEN_PHONG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TANG" Type="Int32" />
+          <Property Name="TRANG_THAI" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MA_LOAI" Type="Int32" />
+          <NavigationProperty Name="ALBUM_ANH_PHONG" Relationship="Self.FK__ALBUM_ANH__MA_PH__59FA5E80" FromRole="PHONG" ToRole="ALBUM_ANH_PHONG" />
+          <NavigationProperty Name="DANH_GIA" Relationship="Self.FK__DANH_GIA__MA_PHO__571DF1D5" FromRole="PHONG" ToRole="DANH_GIA" />
+          <NavigationProperty Name="DAT_PHONG" Relationship="Self.FK__DAT_PHONG__MA_PH__49C3F6B7" FromRole="PHONG" ToRole="DAT_PHONG" />
+          <NavigationProperty Name="LOAI_PHONG" Relationship="Self.FK__PHONG__MA_LOAI__440B1D61" FromRole="PHONG" ToRole="LOAI_PHONG" />
+        </EntityType>
+        <EntityType Name="SU_DUNG_DV">
+          <Key>
+            <PropertyRef Name="MA_SD" />
+          </Key>
+          <Property Name="MA_SD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MA_DP" Type="Int32" />
+          <Property Name="MA_DV" Type="Int32" />
+          <Property Name="SO_LUONG" Type="Int32" />
+          <Property Name="NGAY_SU_DUNG" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="DAT_PHONG" Relationship="Self.FK__SU_DUNG_D__MA_DP__4CA06362" FromRole="SU_DUNG_DV" ToRole="DAT_PHONG" />
+          <NavigationProperty Name="DICH_VU" Relationship="Self.FK__SU_DUNG_D__MA_DV__4D94879B" FromRole="SU_DUNG_DV" ToRole="DICH_VU" />
+        </EntityType>
+        <EntityType Name="TAI_KHOAN">
+          <Key>
+            <PropertyRef Name="MA_TK" />
+          </Key>
+          <Property Name="MA_TK" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TEN_DANG_NHAP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MAT_KHAU" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="VAI_TRO" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="KHACH_HANG" Relationship="Self.FK__KHACH_HAN__MA_TK__3B75D760" FromRole="TAI_KHOAN" ToRole="KHACH_HANG" />
+          <NavigationProperty Name="NHAN_VIEN" Relationship="Self.FK__NHAN_VIEN__MA_TK__3F466844" FromRole="TAI_KHOAN" ToRole="NHAN_VIEN" />
+        </EntityType>
+        <Association Name="FK__ALBUM_ANH__MA_PH__59FA5E80">
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="0..1" />
+          <End Role="ALBUM_ANH_PHONG" Type="Self.ALBUM_ANH_PHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONG">
+              <PropertyRef Name="MA_PHONG" />
+            </Principal>
+            <Dependent Role="ALBUM_ANH_PHONG">
+              <PropertyRef Name="MA_PHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DANH_GIA__MA_KH__5629CD9C">
+          <End Role="KHACH_HANG" Type="Self.KHACH_HANG" Multiplicity="0..1" />
+          <End Role="DANH_GIA" Type="Self.DANH_GIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACH_HANG">
+              <PropertyRef Name="MA_KH" />
+            </Principal>
+            <Dependent Role="DANH_GIA">
+              <PropertyRef Name="MA_KH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DANH_GIA__MA_PHO__571DF1D5">
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="0..1" />
+          <End Role="DANH_GIA" Type="Self.DANH_GIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONG">
+              <PropertyRef Name="MA_PHONG" />
+            </Principal>
+            <Dependent Role="DANH_GIA">
+              <PropertyRef Name="MA_PHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DAT_PHONG__MA_KH__48CFD27E">
+          <End Role="KHACH_HANG" Type="Self.KHACH_HANG" Multiplicity="0..1" />
+          <End Role="DAT_PHONG" Type="Self.DAT_PHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACH_HANG">
+              <PropertyRef Name="MA_KH" />
+            </Principal>
+            <Dependent Role="DAT_PHONG">
+              <PropertyRef Name="MA_KH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DAT_PHONG__MA_PH__49C3F6B7">
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="0..1" />
+          <End Role="DAT_PHONG" Type="Self.DAT_PHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PHONG">
+              <PropertyRef Name="MA_PHONG" />
+            </Principal>
+            <Dependent Role="DAT_PHONG">
+              <PropertyRef Name="MA_PHONG" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOA_DON__MA_DP__5070F446">
+          <End Role="DAT_PHONG" Type="Self.DAT_PHONG" Multiplicity="0..1" />
+          <End Role="HOA_DON" Type="Self.HOA_DON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_PHONG">
+              <PropertyRef Name="MA_DP" />
+            </Principal>
+            <Dependent Role="HOA_DON">
+              <PropertyRef Name="MA_DP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOA_DON_T__MA_DP__534D60F1">
+          <End Role="DAT_PHONG" Type="Self.DAT_PHONG" Multiplicity="0..1" />
+          <End Role="HOA_DON_TAM" Type="Self.HOA_DON_TAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_PHONG">
+              <PropertyRef Name="MA_DP" />
+            </Principal>
+            <Dependent Role="HOA_DON_TAM">
+              <PropertyRef Name="MA_DP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SU_DUNG_D__MA_DP__4CA06362">
+          <End Role="DAT_PHONG" Type="Self.DAT_PHONG" Multiplicity="0..1" />
+          <End Role="SU_DUNG_DV" Type="Self.SU_DUNG_DV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_PHONG">
+              <PropertyRef Name="MA_DP" />
+            </Principal>
+            <Dependent Role="SU_DUNG_DV">
+              <PropertyRef Name="MA_DP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SU_DUNG_D__MA_DV__4D94879B">
+          <End Role="DICH_VU" Type="Self.DICH_VU" Multiplicity="0..1" />
+          <End Role="SU_DUNG_DV" Type="Self.SU_DUNG_DV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DICH_VU">
+              <PropertyRef Name="MA_DV" />
+            </Principal>
+            <Dependent Role="SU_DUNG_DV">
+              <PropertyRef Name="MA_DV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__KHACH_HAN__MA_TK__3B75D760">
+          <End Role="TAI_KHOAN" Type="Self.TAI_KHOAN" Multiplicity="0..1" />
+          <End Role="KHACH_HANG" Type="Self.KHACH_HANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAI_KHOAN">
+              <PropertyRef Name="MA_TK" />
+            </Principal>
+            <Dependent Role="KHACH_HANG">
+              <PropertyRef Name="MA_TK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PHONG__MA_LOAI__440B1D61">
+          <End Role="LOAI_PHONG" Type="Self.LOAI_PHONG" Multiplicity="0..1" />
+          <End Role="PHONG" Type="Self.PHONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOAI_PHONG">
+              <PropertyRef Name="MA_LOAI" />
+            </Principal>
+            <Dependent Role="PHONG">
+              <PropertyRef Name="MA_LOAI" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NHAN_VIEN__MA_TK__3F466844">
+          <End Role="TAI_KHOAN" Type="Self.TAI_KHOAN" Multiplicity="0..1" />
+          <End Role="NHAN_VIEN" Type="Self.NHAN_VIEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TAI_KHOAN">
+              <PropertyRef Name="MA_TK" />
+            </Principal>
+            <Dependent Role="NHAN_VIEN">
+              <PropertyRef Name="MA_TK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLKSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ALBUM_ANH_PHONG" EntityType="Self.ALBUM_ANH_PHONG" />
+          <EntitySet Name="DANH_GIA" EntityType="Self.DANH_GIA" />
+          <EntitySet Name="DAT_PHONG" EntityType="Self.DAT_PHONG" />
+          <EntitySet Name="DICH_VU" EntityType="Self.DICH_VU" />
+          <EntitySet Name="HOA_DON" EntityType="Self.HOA_DON" />
+          <EntitySet Name="HOA_DON_TAM" EntityType="Self.HOA_DON_TAM" />
+          <EntitySet Name="KHACH_HANG" EntityType="Self.KHACH_HANG" />
+          <EntitySet Name="LOAI_PHONG" EntityType="Self.LOAI_PHONG" />
+          <EntitySet Name="NHAN_VIEN" EntityType="Self.NHAN_VIEN" />
+          <EntitySet Name="PHONGs" EntityType="Self.PHONG" />
+          <EntitySet Name="SU_DUNG_DV" EntityType="Self.SU_DUNG_DV" />
+          <EntitySet Name="TAI_KHOAN" EntityType="Self.TAI_KHOAN" />
+          <AssociationSet Name="FK__ALBUM_ANH__MA_PH__59FA5E80" Association="Self.FK__ALBUM_ANH__MA_PH__59FA5E80">
+            <End Role="PHONG" EntitySet="PHONGs" />
+            <End Role="ALBUM_ANH_PHONG" EntitySet="ALBUM_ANH_PHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DANH_GIA__MA_KH__5629CD9C" Association="Self.FK__DANH_GIA__MA_KH__5629CD9C">
+            <End Role="KHACH_HANG" EntitySet="KHACH_HANG" />
+            <End Role="DANH_GIA" EntitySet="DANH_GIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DANH_GIA__MA_PHO__571DF1D5" Association="Self.FK__DANH_GIA__MA_PHO__571DF1D5">
+            <End Role="PHONG" EntitySet="PHONGs" />
+            <End Role="DANH_GIA" EntitySet="DANH_GIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DAT_PHONG__MA_KH__48CFD27E" Association="Self.FK__DAT_PHONG__MA_KH__48CFD27E">
+            <End Role="KHACH_HANG" EntitySet="KHACH_HANG" />
+            <End Role="DAT_PHONG" EntitySet="DAT_PHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DAT_PHONG__MA_PH__49C3F6B7" Association="Self.FK__DAT_PHONG__MA_PH__49C3F6B7">
+            <End Role="PHONG" EntitySet="PHONGs" />
+            <End Role="DAT_PHONG" EntitySet="DAT_PHONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOA_DON__MA_DP__5070F446" Association="Self.FK__HOA_DON__MA_DP__5070F446">
+            <End Role="DAT_PHONG" EntitySet="DAT_PHONG" />
+            <End Role="HOA_DON" EntitySet="HOA_DON" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOA_DON_T__MA_DP__534D60F1" Association="Self.FK__HOA_DON_T__MA_DP__534D60F1">
+            <End Role="DAT_PHONG" EntitySet="DAT_PHONG" />
+            <End Role="HOA_DON_TAM" EntitySet="HOA_DON_TAM" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SU_DUNG_D__MA_DP__4CA06362" Association="Self.FK__SU_DUNG_D__MA_DP__4CA06362">
+            <End Role="DAT_PHONG" EntitySet="DAT_PHONG" />
+            <End Role="SU_DUNG_DV" EntitySet="SU_DUNG_DV" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SU_DUNG_D__MA_DV__4D94879B" Association="Self.FK__SU_DUNG_D__MA_DV__4D94879B">
+            <End Role="DICH_VU" EntitySet="DICH_VU" />
+            <End Role="SU_DUNG_DV" EntitySet="SU_DUNG_DV" />
+          </AssociationSet>
+          <AssociationSet Name="FK__KHACH_HAN__MA_TK__3B75D760" Association="Self.FK__KHACH_HAN__MA_TK__3B75D760">
+            <End Role="TAI_KHOAN" EntitySet="TAI_KHOAN" />
+            <End Role="KHACH_HANG" EntitySet="KHACH_HANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PHONG__MA_LOAI__440B1D61" Association="Self.FK__PHONG__MA_LOAI__440B1D61">
+            <End Role="LOAI_PHONG" EntitySet="LOAI_PHONG" />
+            <End Role="PHONG" EntitySet="PHONGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NHAN_VIEN__MA_TK__3F466844" Association="Self.FK__NHAN_VIEN__MA_TK__3F466844">
+            <End Role="TAI_KHOAN" EntitySet="TAI_KHOAN" />
+            <End Role="NHAN_VIEN" EntitySet="NHAN_VIEN" />
+          </AssociationSet>
+          <FunctionImport Name="SP_TINH_HOA_DON">
+          <Parameter Name="MA_DP" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SU_DUNG_DICH_VU">
+            <Parameter Name="MA_DP" Mode="In" Type="Int32" />
+            <Parameter Name="MA_DV" Mode="In" Type="Int32" />
+            <Parameter Name="SO_LUONG" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLKSModelStoreContainer" CdmEntityContainer="QLKSEntities">
+          <EntitySetMapping Name="ALBUM_ANH_PHONG">
+            <EntityTypeMapping TypeName="QLKSModel.ALBUM_ANH_PHONG">
+              <MappingFragment StoreEntitySet="ALBUM_ANH_PHONG">
+                <ScalarProperty Name="MA_ANH" ColumnName="MA_ANH" />
+                <ScalarProperty Name="MA_PHONG" ColumnName="MA_PHONG" />
+                <ScalarProperty Name="LINK_ANH" ColumnName="LINK_ANH" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DANH_GIA">
+            <EntityTypeMapping TypeName="QLKSModel.DANH_GIA">
+              <MappingFragment StoreEntitySet="DANH_GIA">
+                <ScalarProperty Name="MA_DG" ColumnName="MA_DG" />
+                <ScalarProperty Name="MA_KH" ColumnName="MA_KH" />
+                <ScalarProperty Name="MA_PHONG" ColumnName="MA_PHONG" />
+                <ScalarProperty Name="NOI_DUNG" ColumnName="NOI_DUNG" />
+                <ScalarProperty Name="SO_SAO" ColumnName="SO_SAO" />
+                <ScalarProperty Name="NGAY_DANHGIA" ColumnName="NGAY_DANHGIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DAT_PHONG">
+            <EntityTypeMapping TypeName="QLKSModel.DAT_PHONG">
+              <MappingFragment StoreEntitySet="DAT_PHONG">
+                <ScalarProperty Name="MA_DP" ColumnName="MA_DP" />
+                <ScalarProperty Name="MA_KH" ColumnName="MA_KH" />
+                <ScalarProperty Name="MA_PHONG" ColumnName="MA_PHONG" />
+                <ScalarProperty Name="NGAY_DAT" ColumnName="NGAY_DAT" />
+                <ScalarProperty Name="NGAY_NHAN" ColumnName="NGAY_NHAN" />
+                <ScalarProperty Name="NGAY_TRA" ColumnName="NGAY_TRA" />
+                <ScalarProperty Name="TIEN_COC" ColumnName="TIEN_COC" />
+                <ScalarProperty Name="TRANG_THAI" ColumnName="TRANG_THAI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DICH_VU">
+            <EntityTypeMapping TypeName="QLKSModel.DICH_VU">
+              <MappingFragment StoreEntitySet="DICH_VU">
+                <ScalarProperty Name="MA_DV" ColumnName="MA_DV" />
+                <ScalarProperty Name="TEN_DV" ColumnName="TEN_DV" />
+                <ScalarProperty Name="GIA_DV" ColumnName="GIA_DV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HOA_DON">
+            <EntityTypeMapping TypeName="QLKSModel.HOA_DON">
+              <MappingFragment StoreEntitySet="HOA_DON">
+                <ScalarProperty Name="MA_HD" ColumnName="MA_HD" />
+                <ScalarProperty Name="MA_DP" ColumnName="MA_DP" />
+                <ScalarProperty Name="TONG_TIEN" ColumnName="TONG_TIEN" />
+                <ScalarProperty Name="NGAY_XUAT" ColumnName="NGAY_XUAT" />
+                <ScalarProperty Name="DA_THANH_TOAN" ColumnName="DA_THANH_TOAN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HOA_DON_TAM">
+            <EntityTypeMapping TypeName="QLKSModel.HOA_DON_TAM">
+              <MappingFragment StoreEntitySet="HOA_DON_TAM">
+                <ScalarProperty Name="MA_HDT" ColumnName="MA_HDT" />
+                <ScalarProperty Name="MA_DP" ColumnName="MA_DP" />
+                <ScalarProperty Name="TIEN_COC" ColumnName="TIEN_COC" />
+                <ScalarProperty Name="NGAY_XUAT" ColumnName="NGAY_XUAT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KHACH_HANG">
+            <EntityTypeMapping TypeName="QLKSModel.KHACH_HANG">
+              <MappingFragment StoreEntitySet="KHACH_HANG">
+                <ScalarProperty Name="MA_KH" ColumnName="MA_KH" />
+                <ScalarProperty Name="HO_TEN" ColumnName="HO_TEN" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="CCCD" ColumnName="CCCD" />
+                <ScalarProperty Name="MA_TK" ColumnName="MA_TK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOAI_PHONG">
+            <EntityTypeMapping TypeName="QLKSModel.LOAI_PHONG">
+              <MappingFragment StoreEntitySet="LOAI_PHONG">
+                <ScalarProperty Name="MA_LOAI" ColumnName="MA_LOAI" />
+                <ScalarProperty Name="TEN_LOAI" ColumnName="TEN_LOAI" />
+                <ScalarProperty Name="MO_TA" ColumnName="MO_TA" />
+                <ScalarProperty Name="GIA_MOT_DEM" ColumnName="GIA_MOT_DEM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NHAN_VIEN">
+            <EntityTypeMapping TypeName="QLKSModel.NHAN_VIEN">
+              <MappingFragment StoreEntitySet="NHAN_VIEN">
+                <ScalarProperty Name="MA_NV" ColumnName="MA_NV" />
+                <ScalarProperty Name="HO_TEN" ColumnName="HO_TEN" />
+                <ScalarProperty Name="CHUC_VU" ColumnName="CHUC_VU" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="MA_TK" ColumnName="MA_TK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PHONGs">
+            <EntityTypeMapping TypeName="QLKSModel.PHONG">
+              <MappingFragment StoreEntitySet="PHONG">
+                <ScalarProperty Name="MA_PHONG" ColumnName="MA_PHONG" />
+                <ScalarProperty Name="TEN_PHONG" ColumnName="TEN_PHONG" />
+                <ScalarProperty Name="TANG" ColumnName="TANG" />
+                <ScalarProperty Name="TRANG_THAI" ColumnName="TRANG_THAI" />
+                <ScalarProperty Name="MA_LOAI" ColumnName="MA_LOAI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SU_DUNG_DV">
+            <EntityTypeMapping TypeName="QLKSModel.SU_DUNG_DV">
+              <MappingFragment StoreEntitySet="SU_DUNG_DV">
+                <ScalarProperty Name="MA_SD" ColumnName="MA_SD" />
+                <ScalarProperty Name="MA_DP" ColumnName="MA_DP" />
+                <ScalarProperty Name="MA_DV" ColumnName="MA_DV" />
+                <ScalarProperty Name="SO_LUONG" ColumnName="SO_LUONG" />
+                <ScalarProperty Name="NGAY_SU_DUNG" ColumnName="NGAY_SU_DUNG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TAI_KHOAN">
+            <EntityTypeMapping TypeName="QLKSModel.TAI_KHOAN">
+              <MappingFragment StoreEntitySet="TAI_KHOAN">
+                <ScalarProperty Name="MA_TK" ColumnName="MA_TK" />
+                <ScalarProperty Name="TEN_DANG_NHAP" ColumnName="TEN_DANG_NHAP" />
+                <ScalarProperty Name="MAT_KHAU" ColumnName="MAT_KHAU" />
+                <ScalarProperty Name="VAI_TRO" ColumnName="VAI_TRO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_TINH_HOA_DON" FunctionName="QLKSModel.Store.SP_TINH_HOA_DON" />
+          <FunctionImportMapping FunctionImportName="SP_SU_DUNG_DICH_VU" FunctionName="QLKSModel.Store.SP_SU_DUNG_DICH_VU" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
