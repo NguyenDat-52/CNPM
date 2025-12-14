@@ -1,0 +1,30 @@
+@model IEnumerable<QuanLyKhachSan.Models.VW_DOANH_THU_NGAY>
+@{
+    ViewBag.Title = "Báo Cáo Doanh Thu";
+}
+
+<div class="container py-4">
+    <h3 class="mb-4">Báo Cáo Doanh Thu Theo Ngày</h3>
+    
+    <div class="card shadow border-0">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Ngày</th>
+                        <th class="text-end">Tổng Doanh Thu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@((item.NGAY_XUAT ?? DateTime.MinValue).ToString("dd/MM/yyyy"))</td>
+                            <td class="text-end fw-bold text-success">@((item.DOANH_THU ?? 0).ToString("#,##0")) VNĐ</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

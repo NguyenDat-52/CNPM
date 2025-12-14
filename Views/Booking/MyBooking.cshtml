@@ -1,0 +1,51 @@
+@model IEnumerable<QuanLyKhachSan.Models.DAT_PHONG>
+@{
+    ViewBag.Title = "Đơn Đặt Của Tôi";
+}
+
+<div class="container py-5">
+    <h3 class="mb-4">Lịch Sử Đặt Phòng</h3>
+    
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show">
+            @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <div class="table-responsive bg-white shadow-sm rounded p-3">
+        <table class="table table-hover align-middle">
+            <thead class="bg-light">
+                <tr>
+                    <th>Mã Đặt</th>
+                    <th>Phòng</th>
+                    <th>Ngày Nhân</th>
+                    <th>Ngày Trả (DK)</th>
+                    <th>Tình trạng</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>#@item.MA_DAT_PHONG</td>
+                        <td>@item.PHONG.TEN_PHONG</td>
+                        <td>@item.NGAY_NHAN.ToString("dd/MM/yyyy")</td>
+                        <td>@item.NGAY_TRA_DU_KIEN.ToString("dd/MM/yyyy")</td>
+                        <td>
+                            @if(item.TRANG_THAI == "ĐÃ ĐẶT") { <span class="badge bg-primary">Đã Đặt</span> }
+                            else if (item.TRANG_THAI == "ĐANG Ở") { <span class="badge bg-success">Đang Ở</span> }
+                            else if (item.TRANG_THAI == "ĐÃ TRẢ") { <span class="badge bg-secondary">Hoàn Tất</span> }
+                            else { <span class="badge bg-danger">@item.TRANG_THAI</span> }
+                        </td>
+                        <td>
+                            <a href="#" class="btn btn-sm btn-outline-primary">Chi tiết</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

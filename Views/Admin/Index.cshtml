@@ -1,0 +1,53 @@
+@{
+    ViewBag.Title = "Bảng Điều Khiển Quản Trị";
+}
+
+<div class="container py-4">
+    <h2 class="mb-4 fw-bold">Tổng Quan Hệ Thống</h2>
+    
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="card bg-primary text-white h-100 shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Tổng Số Phòng</h5>
+                    <p class="display-4 fw-bold">@ViewBag.TotalRooms</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-success text-white h-100 shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Tổng Doanh Thu</h5>
+                    <p class="display-6 fw-bold">@(((decimal)ViewBag.TotalRevenue).ToString("#,##0")) VNĐ</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-info text-white h-100 shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Tổng Đơn Đặt</h5>
+                    <p class="display-4 fw-bold">@ViewBag.TotalBookings</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white fw-bold">Quản Lý Nhanh</div>
+                <div class="list-group list-group-flush">
+                    <a href="@Url.Action("Rooms")" class="list-group-item list-group-item-action">
+                        <i class="fas fa-bed me-2 text-primary"></i> Quản lý Phòng & Loại Phòng
+                    </a>
+                    <a href="@Url.Action("Staff")" class="list-group-item list-group-item-action">
+                        <i class="fas fa-users me-2 text-info"></i> Quản lý Nhân viên
+                    </a>
+                     <a href="@Url.Action("Revenue")" class="list-group-item list-group-item-action">
+                        <i class="fas fa-chart-line me-2 text-success"></i> Báo cáo Doanh thu
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

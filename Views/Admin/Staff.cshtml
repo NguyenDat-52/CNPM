@@ -1,0 +1,43 @@
+@model IEnumerable<QuanLyKhachSan.Models.NHAN_VIEN>
+@{
+    ViewBag.Title = "Quản Lý Nhân Viên";
+}
+
+<div class="container py-4">
+    <h3 class="mb-4 fw-bold">Danh Sách Nhân Viên</h3>
+
+    <div class="card shadow-sm">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="bg-light">
+                <tr>
+                    <th>Mã NV</th>
+                    <th>Tên Nhân Viên</th>
+                    <th>Chức Vụ</th>
+                    <th>Tài Khoản</th>
+                    <th>Vai Trò</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.MA_NV</td>
+                        <td>@item.HO_TEN</td>
+                        <td>@item.CHUC_VU</td>
+                        <td>@item.TAI_KHOAN.TEN_DANG_NHAP</td>
+                        <td>
+                            @if(item.TAI_KHOAN != null) {
+                                <span class="badge bg-secondary">@item.TAI_KHOAN.VAI_TRO</span>
+                            }
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btn-outline-primary" disabled>Sửa</button>
+                            <button class="btn btn-sm btn-outline-danger" disabled>Xóa</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

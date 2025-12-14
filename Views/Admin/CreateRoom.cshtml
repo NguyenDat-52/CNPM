@@ -1,0 +1,41 @@
+@model QuanLyKhachSan.Models.PHONG
+@{
+    ViewBag.Title = "Thêm Phòng Mới";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">Thêm Phòng Mới</div>
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="mb-3">
+                            <label class="form-label">Tên Phòng</label>
+                            @Html.EditorFor(model => model.TEN_PHONG, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Tầng</label>
+                            @Html.EditorFor(model => model.TANG, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Loại Phòng</label>
+                            <!-- Note: ViewBag.MA_LOAI matched controller logic -->
+                            @Html.DropDownList("MA_LOAI", null, htmlAttributes: new { @class = "form-select" })
+                        </div>
+                        
+                        <!-- Note: TRANG_THAI default to TRONG in controller, no need to show here if creating new -->
+
+                        <button type="submit" class="btn btn-primary">Tạo Mới</button>
+                        <a href="@Url.Action("Rooms")" class="btn btn-secondary">Hủy</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

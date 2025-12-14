@@ -1,0 +1,35 @@
+@model QuanLyKhachSan.Models.DAT_PHONG
+@{
+    ViewBag.Title = "Thêm Dịch Vụ";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">Thêm Dịch Vụ Cho Phòng @Model.PHONG.TEN_PHONG</div>
+                <div class="card-body">
+                    <p><strong>Khách hàng:</strong> @Model.KHACH_HANG.HO_TEN</p>
+                    
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.Hidden("MaDatPhong", Model.MA_DP)
+
+                        <div class="mb-3">
+                            <label class="form-label">Chọn Dịch Vụ</label>
+                            @Html.DropDownList("MaDichVu", ViewBag.MA_DV as SelectList, new { @class = "form-select" })
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Số Lượng</label>
+                            <input type="number" name="SoLuong" class="form-control" value="1" min="1" required />
+                        </div>
+
+                        <button type="submit" class="btn btn-success w-100">Thêm Dịch Vụ</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

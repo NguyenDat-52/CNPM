@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - AntiGravity Hotel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm py-3">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="@Url.Action("Index", "Home")">
+                <i class="fas fa-hotel text-warning me-2"></i>ANTIGRAVITY
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Home")">Trang Chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Room")">Phòng Nghỉ</a>
+                    </li>
+
+                    @if (Session["MA_TK"] != null)
+                    {
+                        var role = Session["ROLE"]?.ToString();
+                        
+                        if (role == "QUANTRI" || role == "QD" || role == "ADMIN") 
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-primary fw-bold" href="@Url.Action("Index", "Admin")">Quản Trị</a>
+                            </li>
+                        }
+                        else if (role == "NHANVIEN" || role == "NV")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-info fw-bold" href="@Url.Action("Bookings", "Staff")">Nhân Viên</a>
+                            </li>
+                        }
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-user-circle me-1"></i> @Session["USERNAME"]
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                @if (role == "KHACHHANG")
+                                {
+                                    <li><a class="dropdown-item" href="@Url.Action("MyBooking", "Booking")">Đặt phòng của tôi</a></li>
+                                }
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-danger" href="@Url.Action("Logout", "Account")">Đăng xuất</a></li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item ms-lg-3">
+                            <a class="btn btn-outline-dark rounded-pill px-4" href="@Url.Action("Login", "Account")">Đăng Nhập</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid p-0 main-content">
+        @RenderBody()
+    </div>
+
+    <footer class="bg-dark text-white py-5 mt-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h5 class="fw-bold mb-3">ANTIGRAVITY HOTEL</h5>
+                    <p class="text-white-50">Trải nghiệm nghỉ dưỡng đẳng cấp thượng lưu với dịch vụ 5 sao chuẩn quốc tế.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="fw-bold mb-3">LIÊN HỆ</h5>
+                    <ul class="list-unstyled text-white-50">
+                        <li><i class="fas fa-map-marker-alt me-2"></i> 140 Le Trong Tan, Tan Phu, HCMC</li>
+                        <li><i class="fas fa-phone me-2"></i> +84 123 456 789</li>
+                        <li><i class="fas fa-envelope me-2"></i> booking@antigravity.com</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="fw-bold mb-3">KẾT NỐI</h5>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-twitter fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 border-secondary">
+            <div class="text-center text-white-50">
+                <small>&copy; @DateTime.Now.Year AntiGravity Hotel. All rights reserved.</small>
+            </div>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    
+</body>
+</html>

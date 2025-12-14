@@ -1,0 +1,46 @@
+@model QuanLyKhachSan.Models.PHONG
+@{
+    ViewBag.Title = "Chỉnh Sửa Phòng";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">Chỉnh Sửa Phòng: @Model.TEN_PHONG</div>
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(model => model.MA_PHONG)
+
+                        <div class="mb-3">
+                            <label class="form-label">Tên Phòng</label>
+                            @Html.EditorFor(model => model.TEN_PHONG, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+
+                         <div class="mb-3">
+                            <label class="form-label">Tầng</label>
+                            @Html.EditorFor(model => model.TANG, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Loại Phòng</label>
+                            @Html.DropDownList("MA_LOAI", null, htmlAttributes: new { @class = "form-select" })
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Trạng Thái</label>
+                            @Html.DropDownList("TRANG_THAI", new SelectList(new [] {"TRỐNG", "SỬA CHỮA", "BẨN"}, Model.TRANG_THAI), new { @class = "form-select" })
+                        </div>
+                        
+                        <!-- Note: MO_TA is in LOAI_PHONG, not PHONG directly editable here unless cascading layout changed. PHONG table doesn't have MO_TA in Schema. Removed. -->
+
+                        <button type="submit" class="btn btn-primary">Lưu Thay Đổi</button>
+                        <a href="@Url.Action("Rooms")" class="btn btn-secondary">Hủy</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

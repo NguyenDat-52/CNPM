@@ -1,0 +1,113 @@
+@model QuanLyKhachSan.Models.LoginViewModel
+@{
+    ViewBag.Title = "Đăng Nhập | AntiGravity Hotel";
+    Layout = null; // Standalone layout for login
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <!-- Use CDN for quick setup -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2070&auto=format&fit=crop') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            animation: fadeIn 0.8s ease-out;
+        }
+        @@keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .login-header h2 {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        .form-control {
+            border-radius: 8px;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+        }
+        .form-control:focus {
+            border-color: #c9a96e; /* Gold color */
+            box-shadow: 0 0 0 0.2rem rgba(201, 169, 110, 0.25);
+        }
+        .btn-primary {
+            background-color: #c9a96e;
+            border-color: #c9a96e;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #b08d55;
+            border-color: #b08d55;
+            transform: translateY(-2px);
+        }
+        .text-danger {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: block;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <div class="login-header">
+            <h2>Chào Mừng</h2>
+            <p class="text-muted">Đăng nhập hệ thống QLKS</p>
+        </div>
+
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            
+            if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger p-2 text-center">
+                    @Html.ValidationSummary(true, "")
+                </div>
+            }
+
+            <div class="mb-3">
+                @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Tên đăng nhập" })
+                @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger text-start small mt-1" })
+            </div>
+            
+            <div class="mb-4">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Mật khẩu" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger text-start small mt-1" })
+            </div>
+            
+            <button type="submit" class="btn btn-primary">ĐĂNG NHẬP</button>
+            <div class="text-center mt-3">
+                <a href="@Url.Action("Index", "Home")" class="text-decoration-none text-muted small">Quay về trang chủ</a>
+            </div>
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+@model QuanLyKhachSan.Models.PHONG
+@{
+    ViewBag.Title = Model.TEN_PHONG;
+    var mainImage = Model.ALBUM_ANH_PHONG.FirstOrDefault()?.LINK_ANH ?? "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=80";
+}
+
+<div class="container py-5">
+    <div class="row">
+        <!-- Image Gallery -->
+        <div class="col-md-8">
+            <div class="card border-0 shadow-lg overflow-hidden mb-4">
+                <img src="@mainImage" class="img-fluid w-100" style="max-height: 500px; object-fit: cover;" alt="Main Image">
+            </div>
+            
+            @if (Model.ALBUM_ANH_PHONG != null && Model.ALBUM_ANH_PHONG.Any())
+            {
+                <div class="row g-2 mb-4">
+                    @foreach(var img in Model.ALBUM_ANH_PHONG.Skip(1).Take(4))
+                    {
+                        <div class="col-3"><img src="@img.LINK_ANH" class="img-fluid rounded" style="height: 100px; object-fit: cover; width: 100%;"></div>
+                    }
+                </div>
+            }
+
+            <h3 class="mb-3">Mô Tả Chi Tiết</h3>
+            <p class="text-muted">@Html.Raw(Model.LOAI_PHONG.MO_TA)</p>
+            
+            <hr class="my-5" />
+            
+            <h4 class="mb-4">Đánh Giá Từ Khách Hàng (@Model.DANH_GIA.Count)</h4>
+            @foreach (var review in Model.DANH_GIA)
+            {
+                <div class="card mb-3 border-0 bg-light">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                             <!-- Reviewer name via navigation prop -->
+                            <h6 class="fw-bold">@review.KHACH_HANG.HO_TEN</h6>
+                            <span class="text-warning">@review.SO_SAO <i class="fas fa-star"></i></span>
+                        </div>
+                        <p class="mb-1">@review.NOI_DUNG</p>
+                        <small class="text-muted">@((review.NGAY_DANHGIA ?? DateTime.Now).ToString("dd/MM/yyyy"))</small>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Booking Sidebar -->
+        <div class="col-md-4">
+            <div class="card border-0 shadow p-4 sticky-top" style="top: 100px;">
+                <h3 class="fw-bold mb-0">@Model.TEN_PHONG</h3>
+                <p class="text-muted">@Model.LOAI_PHONG.TEN_LOAI</p>
+                
+                <div class="display-6 text-primary fw-bold my-3">
+                    @((Model.LOAI_PHONG.GIA_MOT_DEM ?? 0).ToString("#,##0")) <small class="fs-6 text-dark">VNĐ / đêm</small>
+                </div>
+
+                <ul class="list-unstyled mb-4">
+                    <li class="mb-2"><i class="fas fa-layer-group me-2 text-secondary"></i> Tầng @Model.TANG</li>
+                    <li class="mb-2"><i class="fas fa-wifi me-2 text-secondary"></i> Wifi miễn phí</li>
+                    <li class="mb-2"><i class="fas fa-coffee me-2 text-secondary"></i> Bữa sáng miễn phí</li>
+                </ul>
+
+                @if (Model.TRANG_THAI == "TRỐNG")
+                {
+                    <a href="@Url.Action("Booking", "Booking", new { roomId = Model.MA_PHONG })" class="btn btn-hotel btn-lg w-100 py-3">
+                        ĐẶT PHÒNG NGAY
+                    </a>
+                }
+                else
+                {
+                    <button class="btn btn-secondary w-100 py-3" disabled>PHÒNG ĐÃ ĐẶT</button>
+                    <p class="text-center text-danger mt-2 small">Vui lòng chọn ngày khác hoặc phòng khác</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
